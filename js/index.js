@@ -56,7 +56,7 @@ const app = new Vue({
           // it worked
           if (request.status === 200) {
             const json = JSON.parse(request.res);
-            this.displaySuccess(`Successfully emailed ${json.envelope.to} at ${new Date()}`,true);
+            this.displaySuccess(`Successfully emailed ${json.envelope.to} at ${new Date()}`, true);
           }
           else {
             // yeah nice try
@@ -68,9 +68,10 @@ const app = new Vue({
     displaySuccess: function (msg,goodResult) {
       // old school grab the div
       const success = document.querySelector('#success');
-      success.classList.remove('d-none');
+      success.classList.remove(...success.classList);
       // are we naughty or nice
-      success.classList.add( (goodResult) ? 'alert-success' : 'alert-danger' );
+      success.classList.add('alert');
+      success.classList.add((goodResult) ? 'alert-success' : 'alert-danger');
       // update the content
       success.textContent = msg;
     },
