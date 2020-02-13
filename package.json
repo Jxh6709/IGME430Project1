@@ -1,0 +1,27 @@
+{
+  "name": "430project1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/server.js",
+  "scripts": {
+    "start": "node ./src/server.js",
+    "nodemon": "nodemon -e js,html,css --watch ./src --watch ./js --watch ./css --watch ./ ./src/server.js",
+    "pretest": "eslint ./src --fix",
+    "test": "echo \"Tests Complete\" "
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "google-spreadsheet": "^3.0.5",
+    "googleapis": "^47.0.0",
+    "nodemailer": "^6.4.2"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-import": "^2.20.1",
+    "nodemon": "^2.0.2"
+  }
+}

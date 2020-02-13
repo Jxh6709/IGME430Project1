@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css"/>
+    <link type="text/css"
+    rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    
+    <script src="https://unpkg.com/@babel/polyfill@latest/dist/polyfill.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
+
+    <script src = "js/component.js"></script>
+
+    <title>Node Email Client</title>
+    <!-- End Google Analytics -->
+   
+  </head>
+  <body >
+    <div id = "app">
+        <h1 class="display-4 text-center">{{title}}</h1>
+        <div class="container border border-primary my-5 shadow mx-xs-3">
+            <div class="panel panel-default">
+                  <div class="panel-body">
+                        <form id = "form">
+                            <div class="form-group my-4">
+                              <label for="current">Change Contact List: </label>
+                              <select v-model="selectedTerm" class = "mx-1 mb-3" :disabled="loading" @change="loadOtherUser">
+                                <option v-for="title in titles">{{title.title}}</option>
+                              </select>
+                              <div class = "btn-group float-md-right mx-1">
+                                <button class = "mx-1 btn btn-warning float-right" id="show-modal" @click="displayModal">Add User</button>
+                              </div>
+
+                              <modal v-if="showModal" @close="showModal = false" v-bind:name="modalTitle" @savechanges="addOrUpdateUser" v-model="nameToModify" v-bind:titles="titles"></modal>
+
+                              <div id = "instructors">
+                                <p v-if="loading">Please Wait... Loading Contacts</p>
+                                <ul v-if="!loading" class = "list-unstyled">
+                                  <li v-for="person in people">
+                                    <input type="checkbox" v-bind:value="person" v-model="checkedNames" > {{person.name}}  ({{person.email}}) 
+                                    <button class = "alert alert-info nopadding" @click="displayUpdateModal($event,person)">Edit</button>
+                                  </li>
+                                </ul>
+                              </div>     
+                              
+                              <div class="form-group">
+                                  <label for="comment">To:</label>
+                                  <div class = "form-group border">
+                                    <div class = "row">
+                                    <p class = "col-sm-2" v-for="name in checkedNames">{{name.name}} ({{name.email}})</p>
+                                    </div>
+                                  </div>
+                                </div>
+
+                              <div class="form-group">
+                                <label for="comment">Subject:</label>
+                                <textarea class="form-control" rows="1" placeholder="Enter Subject Here" v-model="subject"></textarea>
+                              </div>
+
+                              <div class="form-group">
+                                <label for="comment">Email:</label>
+                                <textarea class="form-control" rows="5" placeholder="Enter Content Of Email Here" v-model="emailContent"></textarea>
+                              </div>
+                            </div>
+                            <div class = "row justify-content-center">
+                              <!-- <button id = "submit"  type="submit" class="btn btn-primary mb-3 mx-3 col-xs-4" :disabled="checkedNames.length==0">Download Selected</button>
+                              <button id = "submit"  type="submit" class="btn btn-success mb-3  mx-3 col-xs-4">Download All</button>
+                              <button id = "submit"  type="submit" class="btn btn-warning mb-3  mx-3 col-xs-4" :disabled="checkedNames.length==0">Email Selected</button> -->
+                            <button id = "submit" @click='sendEmail' class="btn btn-info mb-3  mx-3 col-xs-4" :disabled="checkedNames.length === 0 || emailContent === '' || subject === ''">Email All</button>
+
+                            </div>
+                       </form>
+                       <div id = "success" class="alert d-none" role="alert">
+                        Successfully Submitted!!!
+                      </div>
+                    </div>
+            </div>
+        </div>
+      </div>
+
+    <!-- Optional JavaScript -->
+    <script src = "js/index.js"></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>

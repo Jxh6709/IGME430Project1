@@ -1,0 +1,8 @@
+.modal-active{
+    display:block;
+    opacity: 100 !important;
+}
+
+.nopadding {
+    padding: 0 15px !important;
+}
