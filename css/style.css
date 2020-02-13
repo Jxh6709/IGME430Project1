@@ -1,8 +1,10 @@
 .modal-active{
+    /*showing our lovely modal*/
     display:block;
     opacity: 100 !important;
 }
 
 .nopadding {
+    /*used to clean up bootstrap*/
     padding: 0 15px !important;
 }

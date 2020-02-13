@@ -1,8 +1,9 @@
 // for the post data
 const nodemailer = require('nodemailer');
+// for google to work
 const { google } = require('googleapis');
-
 const { OAuth2 } = google.auth;
+// generic responders
 const responders = require('./responders');
 
 // the client id, secret, and redirect url
@@ -18,6 +19,7 @@ oauth2Client.setCredentials({
 const accessToken = oauth2Client.getAccessToken();
 
 const sendEmail = (request, response, postData) => {
+  // setting up the from part of our email
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -32,21 +34,21 @@ const sendEmail = (request, response, postData) => {
 
   // parsing the recipients
   const emails = postData.to.split('|');
-
+  // all of the options conveniently in an object
   const mailOptions = {
     from: 'jxh6709@g.rit.edu',
     to: emails.toString(),
     subject: postData.subject,
     text: postData.content,
   };
-
+  // send it out with the current configuration
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
+      // something went wrong
       return responders.respondJSONMeta(request, response, 500);
-      // return false;
     }
+    // email sent
     return responders.respondJSON(request, response, 200, JSON.stringify(info));
-    // return info;
   });
 };
 

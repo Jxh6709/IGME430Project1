@@ -2,6 +2,7 @@
 Vue.component("modal",{
 	methods: {
 		updateRecord: function(key, value) {
+			// receiving our keys and values and putting them into the values
 			this.$emit('input', {
 				...this.value, [key]: value 
 			})

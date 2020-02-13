@@ -52,15 +52,16 @@ const app = new Vue({
       // send it out
       this.doPostRequest('/sendEmail', url)
         .then( (request) => {
-          // handle the return data   
-          const json = JSON.parse(request.res);
+          // handle the return data
           // it worked
           if (request.status === 200) {
+            const json = JSON.parse(request.res);
             this.displaySuccess(`Successfully emailed ${json.envelope.to} at ${new Date()}`,true);
           }
           else {
             // yeah nice try
-            this.displaySuccess(json.message,false);
+            // 500 error
+            this.displaySuccess('Something went wrong. Please try again later',false);
           }
         });
     },
@@ -144,6 +145,8 @@ const app = new Vue({
           else if (request.status === 400) {
             // someone probably mistyoed an email
             this.displaySuccess('Guess those parameters need to be more accurate');
+          } else {
+            this.displaySuccess(request.res.message, false);
           }
           // reset back to normal
           this.showModal = !this.showModal;

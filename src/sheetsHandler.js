@@ -47,11 +47,11 @@ const getSheetTitles = async () => {
 
   const titles = [];
   const { sheetCount } = doc;
-
+  // make sure we have some sheets
   if (sheetCount === 0) {
     return false;
   }
-
+  // loop through and grab all of the sheet titles 
   for (let i = 0; i < sheetCount; i++) {
     const sheet = doc.sheetsByIndex[i];
     titles.push({
@@ -59,6 +59,7 @@ const getSheetTitles = async () => {
       title: sheet.title,
     });
   }
+  // send em back
   return titles;
 };
 
