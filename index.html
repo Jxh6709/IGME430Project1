@@ -29,7 +29,7 @@
                         <form id = "form">
                             <div class="form-group my-4">
                               <label for="current">Change Contact List: </label>
-                              <select v-model="selectedTerm" class = "mx-1 mb-3" :disabled="loading" @change="loadOtherUser">
+                              <select v-model="currentListType" class = "mx-1 mb-3" :disabled="loading" @change="loadOtherUser">
                                 <option v-for="title in titles">{{title.title}}</option>
                               </select>
                               <div class = "btn-group float-md-right mx-1">
@@ -68,9 +68,6 @@
                               </div>
                             </div>
                             <div class = "row justify-content-center">
-                              <!-- <button id = "submit"  type="submit" class="btn btn-primary mb-3 mx-3 col-xs-4" :disabled="checkedNames.length==0">Download Selected</button>
-                              <button id = "submit"  type="submit" class="btn btn-success mb-3  mx-3 col-xs-4">Download All</button>
-                              <button id = "submit"  type="submit" class="btn btn-warning mb-3  mx-3 col-xs-4" :disabled="checkedNames.length==0">Email Selected</button> -->
                             <button id = "submit" @click='sendEmail' class="btn btn-info mb-3  mx-3 col-xs-4" :disabled="checkedNames.length === 0 || emailContent === '' || subject === ''">Email All</button>
 
                             </div>
