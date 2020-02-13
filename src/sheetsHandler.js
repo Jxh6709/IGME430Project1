@@ -1,5 +1,6 @@
 const { GoogleSpreadsheet } = require('google-spreadsheet');
-const creds = require('../igme430email-80788da58914.json');
+// json for dev testing only
+// const creds = require('../igme430email-80788da58914.json');
 // spreadsheet key is the long id in the sheets URL
 const doc = new GoogleSpreadsheet('1FP1MPjPiFGxoGEmQ2AxL2Dc2ChiZ6utwQl3NkYHzsZo');
 
@@ -8,7 +9,11 @@ const getContacts = async (titleIndex) => {
   // clear the contacts;
   const contacts = [];
   // authenticating and loading the document
-  await doc.useServiceAccountAuth(creds);
+  // await doc.useServiceAccountAuth(creds);
+  await doc.useServiceAccountAuth({
+    client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+    private_key: process.env.GOOGLE_PRIVATE_KEY,
+  });
   await doc.loadInfo(); // loads document properties and worksheets
 
   // press 0 for personal, 1 for business
@@ -33,7 +38,11 @@ const getContacts = async (titleIndex) => {
 
 const getSheetTitles = async () => {
   // authenticating and loading the document
-  await doc.useServiceAccountAuth(creds);
+  // await doc.useServiceAccountAuth(creds);
+  await doc.useServiceAccountAuth({
+    client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+    private_key: process.env.GOOGLE_PRIVATE_KEY,
+  });
   await doc.loadInfo(); // loads document properties and worksheets
 
   const titles = [];
@@ -55,7 +64,11 @@ const getSheetTitles = async () => {
 
 const addOrUpdateRecord = async (person) => {
   // authenticating and loading the document
-  await doc.useServiceAccountAuth(creds);
+  await doc.useServiceAccountAuth({
+    client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+    private_key: process.env.GOOGLE_PRIVATE_KEY,
+  });
+  // await doc.useServiceAccountAuth(creds);
   await doc.loadInfo(); // loads document properties and worksheets
   // get the appropriate sheet
   const sheet = (person.listType === 'Personal') ? doc.sheetsByIndex[0] : doc.sheetsByIndex[1];
