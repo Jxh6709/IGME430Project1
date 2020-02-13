@@ -2,7 +2,8 @@ const { parse } = require('querystring');
 const email = require('./emailHandler');
 const sheets = require('./sheetsHandler');
 const responders = require('./responders');
-// a wonderful little function equipped with a callback that gives us all the bosy params as an object
+// a wonderful little function equipped with a callback 
+// that gives us all the bosy params as an object
 const getPostData = (request, response, callback) => {
   let body = '';
   request.on('data', (chunk) => {

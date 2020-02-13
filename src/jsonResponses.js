@@ -19,7 +19,8 @@ const getUsers = async (request, response) => {
   // grab the query params
   const potentialQueryParams = url.parse(request.url, true).query;
 
-  // if they get the list type right, we patiently grab the appropriate sheet and return the contents
+  // if they get the list type right, we patiently grab the 
+  // appropriate sheet and return the contents
   if (potentialQueryParams.contactListType === 'Personal') {
     const contacts = await sheets.getContacts(0);
     return responders.respondJSON(request, response, 200, contacts);
