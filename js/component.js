@@ -20,8 +20,8 @@ Vue.component("modal",{
 						</div>
 						<div class="modal-body">
 								<form>
-									<label for="exampleFormControlInput1">Choose The List To Add To</label>
-									<select @input="updateRecord('listType',$event.target.value)">
+									<label v-if="name==='Add User'" for="exampleFormControlInput1">Choose The List To Add To</label>
+									<select v-if="name==='Add User'" @input="updateRecord('listType',$event.target.value)">
 										<option v-for="title in titles">{{title.title}}</option>
 									</select>
                                     <div class="form-group">
