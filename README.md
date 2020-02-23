@@ -14,17 +14,17 @@
 
 ## If you were to continue, what would you do to improve your app?
   
-Markup : * Move the data from Google Sheets to either PostgresSQL or MongoDB
-         * Rebuild the server to use express
-         * Add the ability to include attachments
-         * Add the ability to import a CSV or XLSX contact list
-         * Add a login system so each user can send their own emails
-         * Add Email signin so all emails are not sent from my RIT email address
+* Move the data from Google Sheets to either PostgresSQL or MongoDB
+* Rebuild the server to use express
+* Add the ability to include attachments
+* Add the ability to import a CSV or XLSX contact list
+* Add a login system so each user can send their own emails
+* Add Email signin so all emails are not sent from my RIT email address
 
 ## How did you go above and beyond?
 
-Markup: * Data is stored in Google Sheets as opposed to memory
-        * The nodemailer library is used to send emails to users
-        * The front end is built with Vue JS
-        * A Vue component is used to make the Modal
-        * Although it is not reflected in the folder / file strcuture, separation of concerns is implemented to create a MVC-esque code experience
+* Data is stored in Google Sheets as opposed to memory
+* The nodemailer library is used to send emails to users
+* The front end is built with Vue JS
+* A Vue component is used to make the Modal
+* Although it is not reflected in the folder / file strcuture, separation of concerns is implemented to create a MVC-esque code experience
